@@ -5,23 +5,60 @@ using ChuckNorrisAPI.Model;
 
 namespace ChuckNorrisAPI
 {
-    class Program
+    public class Program
     {
-        static async Task Main(string[] args)
+        ChuckNorrisClient client = new ChuckNorrisClient();
+        public static async Task Main(string[] args)
         {
-            await GetJoke();
+            Program p = new Program();
+            await p.GetJoke();
         }
 
-        public static async Task GetJoke()
+        public async Task GetJoke()
         {
-            var result = await ChuckNorrisClient.GetJokes();
-            Console.WriteLine($"Joke: {result.Value}");
-            string userInput = Console.ReadKey().Key.ToString();
             
+            var result = await client.GetJokes();
+            Console.WriteLine($"Joke: {result.Value}");
+            await GetChoice();
+
+        }
+
+        public async Task GetNextJoke()
+        {
+
+            var nextJoke = client.GetNextJoke();
+            Console.WriteLine($"Joke: {nextJoke.Value}");
+            await GetChoice();
+        }
+
+        public async Task GetPreviousJoke()
+        {
+         
+            var PrevJoke = client.GetPreviousJoke();
+            Console.WriteLine($"Joke: {PrevJoke.Value}");
+            await GetChoice();
+
+        }
+
+        public async Task GetChoice()
+        {
+            string userInput = Console.ReadKey().Key.ToString();
+
             if (userInput.ToLowerInvariant() == "j")
                 await GetJoke();
+
+            else if (userInput.ToLowerInvariant() == "n")
+                await GetNextJoke();
+
+            else if (userInput.ToLowerInvariant() == "p")
+                await GetPreviousJoke();
+
+            else
+                await GetJoke();
+
+
+
         }
 
-      
     }
 }
