@@ -34,5 +34,12 @@ namespace ChuckNorrisTests
 
         }
 
+        [Test]
+        public void Should_get_previous_joke_and_ok_with_joke_requests()
+        {
+
+
+        }
+
     }
 }
