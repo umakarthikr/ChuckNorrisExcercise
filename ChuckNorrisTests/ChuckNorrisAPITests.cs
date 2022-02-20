@@ -26,5 +26,13 @@ namespace ChuckNorrisTests
             Assert.AreEqual(System.Net.HttpStatusCode.OK, result.StatusCode);
 
         }
+
+        [Test]
+        public void Should_get_next_joke_and_ok_with_joke_requests()
+        {
+          
+
+        }
+
     }
 }
