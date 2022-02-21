@@ -10,8 +10,15 @@ namespace ChuckNorrisAPI
         ChuckNorrisClient client = new ChuckNorrisClient();
         public static async Task Main(string[] args)
         {
-            Program p = new Program();
-            await p.GetJoke();
+            try
+            {
+             Program p = new Program();
+             await p.GetJoke();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("There was a problem getting the jokes, Internal server error");
+            }
         }
 
         public async Task GetJoke()
